@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clock{
+            background-color: rgba(255, 0, 0,0.7);
+            max-width:10%;
+            padding: 20px 20px;
+            margin:auto auto;
+            box-shadow: 0px 0px 4px 1px black;
+            border-radius: 30%;
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+     <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+     <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+     <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+     <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+   
+     <script type="text/babel">
+        const rootElement = document.getElementById('root')
+         
+        const clock =()=>{
+            const time = new Date().toLocaleTimeString()
+            const element =  <div className='clock'>{time}</div>
+
+            ReactDOM.render(element, rootElement )
+        }
+
+        clock()
+
+        //rerendering the component using setInterval function every 1 second.
+        setInterval(clock,1000)
+        
+        
+
+        
+
+        
+       
+
+        
+    </script>
+</body>
+</html>

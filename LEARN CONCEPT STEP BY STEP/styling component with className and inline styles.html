@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 100px;
+            content: '';
+            margin: 20px 20px;
+            box-shadow: 0px 0px 2px 2px black;
+        }
+        .box-small{
+            height: 100px;
+            width: 100px;
+        }
+        .box-medium{
+            width: 200px;
+            height: 200px;
+        }
+        .box-large{
+            width:400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <div id="root"></div>
+     <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+     <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+     <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+     <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+   
+
+    <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    // making the custom component where some styling class are predefined and some inline style are combined to the predefined style class.
+    const Box = ({style, size, ...rest})=>{ //one of the implementation of ...rest argument.
+        const className = size? `box-${size}`: ''
+        
+        // keeping all the attributer of the box element as the props object 
+        const props = {
+            className : `box ${className}` ,
+            style:{textAlign:'center', fontSize:'20px', ...style },
+            ...rest
+        }
+
+        // spreading the props object using spread operator
+        return(
+            <div {...props}> 
+            </div>
+        )
+    }
+
+    const element = <>
+        <Box size = 'small' style={{backgroundColor:'red'}} children='Small box'/>     
+        <Box size= 'medium' style={{backgroundColor:'green'}} children='Medium box'/> 
+        <Box size = 'large' style={{ backgroundColor:'yellow'}} children=" Large box "/>
+    
+
+    </>
+
+    ReactDOM.render(element, rootElement)
+
+    </script>
+</body>
+</html>

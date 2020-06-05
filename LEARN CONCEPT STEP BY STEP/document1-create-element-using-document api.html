@@ -1,0 +1,20 @@
+<body>
+    <!-- creating a div with id root where all our application will be mounted -->
+    <div id='root'></div>
+
+    <!-- using the react in the page -->
+  
+    <script type="text/javascript">
+        // getting access of the div element using getElement by ID.
+        const rootElement = document.getElementById('root');
+        //creating a new div element
+        const element = document.createElement('div')
+        // adding the textContent in the div element
+        element.textContent= 'Hello World'
+        // adding the class name to the newly created div element.
+        element.className = 'container';
+        
+        //appending the div element with a new element name element and creating a element above.
+        rootElement.appendChild(element)
+    </script>
+</body>

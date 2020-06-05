@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+      <!-- we can use N but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+      <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script> <!-- this for creating the react elements-->
+      <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script> <!-- this for rendering the elements-->  
+    <script>
+        const rootElement = document.getElementById('root'); // accessing the div with id root.
+        const element = React.createElement('div',{
+            //the children property can also be passed as the third parameter of the createElement
+            // children:'Hello World',
+            // children: React.createElement('p',{className:'paragraph_child'},'Hello World1'),
+            children:['Hello World', React.createElement('p',{className:'paragraph_child'},'Hello World2')],
+            className:'container'
+        },)//'Hello World3')
+        
+        //using ReactDOM to render the element into the rootElement 
+        ReactDOM.render(element, rootElement);
+        console.log(element)
+    </script>
+</body>
+</html>

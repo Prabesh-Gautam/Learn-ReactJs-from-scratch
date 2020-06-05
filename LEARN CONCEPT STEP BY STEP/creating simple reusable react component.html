@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #root{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+    <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script> <!-- this for creating the react elements-->
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script> <!-- this for rendering the elements-->  
+    <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+   
+    <script type="text/babel">
+        // First creating a custome functional component which takes a parameter and returns a JSX.
+        // it should be capital letter
+        const Button = (props) => {
+            return (
+                <button>
+                    {props.children}
+                </button>    
+            )
+        }
+        // accessing the div with the id root
+        const rootElement = document.getElementById('root')
+
+        // 
+        const element = <div className='main_container'>
+                <Button>First</Button>
+                <Button>Second</Button>
+            </div>
+        
+
+        //rendering the new element into the root element 
+        ReactDOM.render(element, rootElement)
+
+    </script>
+</body>
+</html>

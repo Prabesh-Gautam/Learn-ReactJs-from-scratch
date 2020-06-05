@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- using the style to the element of the custom component -->
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .counter{
+            background-color: rgba(255,0,0,0.5);
+            width: 40%;
+            text-align: center;
+            margin:20px auto;
+            padding: 20px 10px;
+            box-shadow: 4px 2px 4px 2px black;
+            font-size: 20px;
+            
+
+
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+     <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+     <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+     <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+     <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+    
+    <script type="text/babel">
+        const rootElement = document.getElementById('root')
+
+        // here the custom functional component should return the length of character as bold if length exists.
+        // if the length doesn't exists then it should return No , not
+
+        const Card = ({word}) =>{
+            const length = word.length?<strong>{word.length}</strong>:'No'
+            return (
+                <div className="counter">
+                    {`The word ${word} has `} {length} {`characters`}
+                    </div>
+            )
+        }
+
+        const element = <>
+        <Card word='Prabesh Gautam'></Card>
+        <Card word= 'Sweta Dahal'/>
+        <Card word=''/>
+           
+        </>
+
+        ReactDOM.render(element, rootElement)
+
+    </script>
+</body>
+</html>

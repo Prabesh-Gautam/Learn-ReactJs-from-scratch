@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+    <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+    <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+    <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+   
+   <!-- this is the package created by the react team and we can use it for the validation of the prop type -->
+   <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+   
+   
+   <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    const Card = ({heading, details}) =>{
+        return (
+            <div className='container'>
+            <h1>{heading}</h1>
+            <p>{details}</p>
+            </div>
+        )
+    }
+
+    // Validating the props in the custom functional component using Proptypes, open the console in the browser to see the result.
+    // this was so common that the react team created a package to validate these problem and we can use by including a package.
+    // either use your own validator like below or use the package for the validation.
+
+    // const PropTypes = {
+    //     string :  function(props,propName,componentName){
+    //         if(typeof props[propName] !== 'string'){
+    //             return new Error (
+    //                     `Hey, the component ${componentName} needs the prop ${propName} to be the string, but you passed  a ${typeof props[propName]}`
+    //             )
+    //         }
+    //     }
+    //     }
+
+    Card.propTypes={
+        heading: PropTypes.string.isRequired, //isRequired is also a validator which checks whether the value is passed to the props or not.
+        details: PropTypes.string.isRequired
+    }
+
+    const element = (<div> 
+    <Card heading= {false} ></Card>
+    </div>)
+
+
+    ReactDOM.render(element, rootElement)
+
+    </script>
+</body>
+</html>

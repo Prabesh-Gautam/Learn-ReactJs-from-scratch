@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16.8.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+    <script src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+    <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+
+    <script type="text/babel">
+
+    // for this useEffect dependency react team has developed eslint-plugin-react-hooks which we can use 
+
+    const rootElement = document.getElementById('root')
+
+    function Greetings (){
+
+        const [name,setName] = React.useState(
+            ()=>{
+                console.log("accessing the local storage")
+                return window.localStorage.getItem('name')||''
+        })
+
+        React.useEffect(()=>{
+            console.log('new value stored to the local storage')
+            return window.localStorage.setItem('name',name)
+        },[name])
+        //this is the second argument as an dependency array for useEffect where you pass all the dependencies for your side effect.
+        //Jun jun kura dependent hunxa world ra hamro app bich tyo pass garnu parxa tyo array maa, yeha name variable matra xa so name is passed.        
+        const handleChange =(event)=>{
+            setName(event.target.value)
+        }
+
+        const [value, setValue] = React.useState(0)
+
+        const handleClick = () => {
+            setValue(value+1)
+        }
+        return(
+        <div>
+            <button onClick={handleClick}>{value}</button>
+            <form action="">
+                <label htmlFor="input1">Username</label>
+                <input value={name} type="text" id='input1' onChange= {handleChange} />
+                </form>
+                <p>{name?<strong>Hello, {name}</strong>:'Please Enter Your name'}</p>
+            </div>
+
+        )
+    }
+
+    ReactDOM.render(<Greetings />, rootElement)
+
+
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+     <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+     <script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+     <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+     <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+    
+    <script type= 'text/babel'>
+
+    const rootElement = document.getElementById('root')
+
+    //This is only to learn how event works in react, this is not typicall how you rerender or manage state in actual react application.
+
+    const state ={
+        eventCount:0,
+        username:''
+    }
+
+    // This id the custome functional component named App
+    const App = ()=>{
+        //this function handles the click event which is passed to the button .
+        const handleClick = ()=>{
+            setState({eventCount: state.eventCount +1})
+        }
+
+        // this function handles the change when the input field is active and has some changes to its value.
+        const handleChange =(event)=>{
+        setState({username: event.target.value})
+    }
+        return(
+            <div>
+            <p> There have been {state.eventCount} events</p>
+            <p>
+            <button onClick = {handleClick}>Click me</button>
+            </p>
+            <p>You typed:{state.username}</p>
+            <p><input onChange = {handleChange} >
+              </input> </p> 
+            </div>
+        )
+    }
+
+    //this setState function handles the state object if any changes occur.
+    function setState(newState){
+        Object.assign(state,newState) //this Object.assign methode will replace the previous object with the new object , here state with newState
+        renderApp()
+    }
+
+    //this renderApp function handles the function to render the application
+    const renderApp = () =>{
+         ReactDOM.render(<App /> , rootElement) //rendering the App inside the rootElement
+    }
+    
+    //calling the renderApp function to render the app initially.
+    renderApp()
+
+    </script>
+</body>
+</html>

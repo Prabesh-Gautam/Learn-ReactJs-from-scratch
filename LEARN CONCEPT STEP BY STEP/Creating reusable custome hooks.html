@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .formType1{
+            width: 50%;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0px 0px 2px 2px black;
+            font-size: 20px;
+            font-weight: bold;
+            
+        }
+        .formType1 input{
+            margin-left: 10px;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0px 0px 2px 2px black;
+        }
+        .formType1 label{
+            text-decoration: underline;
+            word-spacing: 2px;
+
+        }
+        /* ------------------------------------------------- */
+        .formType2{
+            width: 50%;
+            padding: 20px;
+            margin: 0px auto;
+            box-shadow: 0px 0px 2px 2px red;
+            font-size: 18px;
+            font-style: italic;
+        }
+        .formType2 input{
+            margin-left: 10px;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0px 0px 2px 2px red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.8.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+    <script src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+    <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+
+        <script type="text/babel">
+
+        const rootElement = document.getElementById('root')
+
+            //Making the hooks reusable by creating a funciton useLocalStorageState.
+            // generalizing the code 
+
+        function useLocalStorageState(key,defaultValue=''){
+            const [state, setState] = React.useState(()=>{
+                return window.localStorage.getItem(key)||defaultValue})
+
+            React.useEffect(()=>{
+                window.localStorage.setItem(key, state)
+            },[key,state])
+
+            return [state, setState]
+        }
+
+        function Greeting(){
+          
+            const[name,setName] = useLocalStorageState('name')
+
+            const handleChange = (event) =>{
+                setName(event.target.value)
+            }
+             
+
+            return(
+                <div >
+                    <form action="">
+                        <label htmlFor='input1'></label>
+                        <input type="text" name="firstName" id='input1' onChange={handleChange}/>
+                        </form>
+                        <p>{name?<strong>Hello, it's me {name}</strong>:'Please, Enter your name'}</p>
+                    </div>
+            )
+        }
+
+        const element = <div>
+            <Greeting />
+            </div>
+
+        ReactDOM.render(element , rootElement)
+        </script>
+</body>
+</html>

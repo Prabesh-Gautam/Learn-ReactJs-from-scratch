@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+     <!-- we can use Npm but now here we are using a service unpkg which is use it to quickly and easily load any file from any package using a URL -->
+     <script src="https://unpkg.com/react@16.8.0/umd/react.development.js"></script> <!-- this for creating the react elements-->
+     <script src="https://unpkg.com/react-dom@16.8.0/umd/react-dom.development.js"></script> <!-- this for rendering the elements-->  
+     <!-- this is used to include the babel standalone to convert the JSX code to the JS code, babel is a compiler -->
+     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>   
+   
+
+    <script type="text/babel">
+
+    //Learning to use the local storage to store the value which can be fetched on the page refreshed
+
+    function Greeting(){
+
+        //handling the state using the useState hook
+        let [name, setName] = React.useState(
+        //fetching the locally stored value initially after rerendered. 
+        // Every time the page is refreshed the value will be fetched.  
+        // to prevent the local storage everytime the value is changed we use the lazy initializer
+        // It helps only to fetch the data from the local storage at the beginning of the page refresh.
+        // It prevents unnecessary accessing of the local storage.
+        ()=> {
+            console.log('Local Storage Checked')
+             return window.localStorage.getItem('name')||''
+    
+        });
+        console.log('rendered')
+        
+        //useEffect hook is used to store the value local storage
+        //useEffect hook will be called everytime the  Greeting component is rendered.
+
+        React.useEffect(()=>{
+            window.localStorage.setItem('name', name);
+        })
+         //this setName is a function/method to update the name variable and rerender the app
+
+        return(
+            <div>
+                <form action="">
+                    <label htmlFor="input1">Username</label>
+                    <input value={name} type="text" id='input1' onChange = {(event)=>{setName(event.target.value)}}/>
+                </form>    
+               {name?<p>Hello, <strong>{name}</strong></p>:<p>Please,Enter Your Name</p>}
+                  
+            </div>
+        )
+    }
+    const rootElement = document.getElementById('root')
+
+    ReactDOM.render(<Greeting/>, rootElement)
+    
+    </script>
+</body>
+</html>

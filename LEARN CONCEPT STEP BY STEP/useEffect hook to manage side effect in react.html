@@ -25,7 +25,7 @@
         //fetching the locally stored value initially after rerendered.  Every time the page is refreshed the value will be fetched.  
         window.localStorage.getItem('name')||'');
         
-        //useEffect hook is used to store the value local storage
+        //useEffect hook is used to manage the side effects of the component.
         //useEffect hook will be called everytime the  Greeting component is rendered.
 
         React.useEffect(()=>{

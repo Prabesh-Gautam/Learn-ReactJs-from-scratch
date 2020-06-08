@@ -18,3 +18,9 @@ This repository contains the files for learning reactjs from the scratch. Making
 14. lazy initializer with useState
 15. useEffect dependency Array
 16. Creating reusable custome hooks
+17. manipulating dom with react ref
+18. understanding react hook flow
+19. basic form with react
+20. dynamic form with react
+21. controlling the input value with react
+

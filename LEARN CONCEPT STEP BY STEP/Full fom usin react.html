@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            box-shadow: 0px 0px 2px 2px black;
+          
+        }
+        .color1{
+           text-decoration: underline;
+           color: white;
+        }
+        .color2{
+           color:green;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+    <script type="text/babel">
+        const rootElement = document.getElementById('root')
+
+        function Form({className, style,...rest}){
+
+            const prop={
+                style:{backgroundColor:'red', ...style},
+                className:`form ${className}`,
+                ...rest
+
+            }
+            return(
+                <form action="" >
+                    <div {...prop}>
+                        <label htmlFor="username">Username</label>
+                        <input type="text" id='username'/>
+                    </div>
+                    </form>
+            )
+        }
+
+
+        const element = <>
+            <Form className="color1" id = "form1" style={{ fontSize:'20px', margin:'20px'}} />
+            <Form className="color2" id= "form2" style={{ fontSize:'30px', margin:'10px'}} />
+        </>
+
+
+        ReactDOM.render(element, rootElement)
+    </script>
+</body>
+</html>
